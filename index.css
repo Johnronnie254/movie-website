@@ -1,0 +1,11 @@
+body{
+    background-color: aqua;
+}
+
+#movieList{
+    margin-left: 500px;
+}
+.image{
+    width: 150px;
+    height: 150px;
+}
