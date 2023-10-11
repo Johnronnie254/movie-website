@@ -3,10 +3,13 @@
 //Getting the data on the DOM to the web page
 document.addEventListener('DOMContentLoaded', () => {
 
-    fetch('http://localhost:3000/films')
+    //fetching data from the json file
+    fetch('http://localhost:3000/films') 
         .then((res) => res.json())
         .then((data) => {
             const movieList = document.getElementById('movieList');
+
+            //using the foeEach function to get data for all the items in the array of the JSON file
             data.forEach((data) => {
                 const movieItem = document.createElement('li');
                 movieItem.classList.add("films", "item");
@@ -19,6 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     <br>
                     <button class="buyTicket">BuyTicket</button>
                 `;
+
+                //working on eventListner  to book the tickets
                 let availableTicketsElement = movieItem.querySelector('.availableTickets');
                 const buyTicket = movieItem.querySelector('.buyTicket');
                 let ticketsSold = movieItem.querySelector('.ticketsSold');
@@ -27,6 +32,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     let currentTicketsSold = parseInt(ticketsSold.textContent);
                     ticketsSold.textContent = currentTicketsSold + 1;
                     availableTicketsElement.textContent = data.capacity - currentTicketsSold;
+
+                    //a function to alert the user when they have purchased a ticket
 
                     function stopPurchase() {
                         if (data.capacity > currentTicketsSold) {
